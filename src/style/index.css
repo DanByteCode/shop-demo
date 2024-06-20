@@ -457,6 +457,7 @@ input[type=range] {
 
     img {
       align-self: center;
+      width: 100%;
     }
   }
 
