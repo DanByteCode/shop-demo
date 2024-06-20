@@ -7,7 +7,7 @@ export default function App () {
 
   function isValid (product) {
     return product.price <= filter.maxPrice &&
-      product.title.toLowerCase().includes(filter.search) &&
+      product.title.toLowerCase().includes(filter.search.toLowerCase()) &&
       (filter.category === '' || product.category === filter.category)
   }
 
