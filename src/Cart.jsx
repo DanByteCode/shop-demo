@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 import { useCart } from './hooks/useCart'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import ReturnButton from './components/ReturnButton'
 import CartItem from './components/CartItem'
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
@@ -9,6 +9,11 @@ export default function Cart () {
   const [cheked, setCheked] = useState([])
   const { cartList, clearAll, clearSelected } = useCart()
   const path = useLocation()
+  const total = useMemo(() => {
+    return cartList.reduce((a, b) => {
+      return (a += b.amount * b.price)
+    }, 0)
+  }, [cartList])
   function handleCheck (e, id) {
     const newCheck = [...cheked]
     if (e.target.checked) {
@@ -57,7 +62,7 @@ export default function Cart () {
           <motion.tfoot layout layoutId='1'>
             <tr>
               <td colSpan="3">TOTAL</td>
-              <td>{cartList.reduce((a, b) => { return (a += b.amount * b.price) }, 0).toFixed(2)}</td>
+              <td>{total.toFixed(2)}</td>
             <td/>
                 </tr>
           </motion.tfoot>

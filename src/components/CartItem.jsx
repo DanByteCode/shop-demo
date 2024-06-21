@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom'
 import NumberEdit from './NumberEdit'
 import { motion } from 'framer-motion'
 import { useCart } from '../hooks/useCart'
+import { useMemo } from 'react'
 
 export default function CartItem ({ item, handleCheck, path, index }) {
   const { editMount } = useCart()
+  const total = useMemo(() => item.price * item.amount, [item])
   return (
     <motion.tr
       className={item.amount > 0 ? 'count' : 'no-count'}
@@ -21,7 +23,7 @@ export default function CartItem ({ item, handleCheck, path, index }) {
         />
       </td>
       <td>{item.price.toFixed(2)}</td>
-      <td>{(item.price * item.amount).toFixed(2)}</td>
+      <td>{total.toFixed(2)}</td>
       <td><input type='checkbox' onChange={(e) => handleCheck(e, item.id)} /></td>
     </motion.tr>)
 }

@@ -12,7 +12,6 @@ export default function FilterBar () {
           <input type="search"
             value={filter.search}
             onChange={(e) => setFilter({ ...filter, search: e.target.value })}
-            autoFocus
           />
         </label>
       </Form>

@@ -1,15 +1,14 @@
-import { useContext } from 'react'
+import { useContext, useCallback } from 'react'
 import { cartContext } from './CartListCont'
 import FilterBar from './components/FilterBar'
 import ArticleCard from './components/ArticleCard'
 export default function App () {
   const { cartList, articles, filter } = useContext(cartContext)
-
-  function isValid (product) {
+  const isValid = useCallback((product) => {
     return product.price <= filter.maxPrice &&
-      product.title.toLowerCase().includes(filter.search.toLowerCase()) &&
-      (filter.category === '' || product.category === filter.category)
-  }
+        product.title.toLowerCase().includes(filter.search.toLowerCase()) &&
+        (filter.category === '' || product.category === filter.category)
+  }, [filter])
 
   return (
     <>

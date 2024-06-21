@@ -341,9 +341,9 @@ td {
 
   .active {
     font-weight: 600;
-    text-decoration: underline #bbd0d455 2px;
+    text-decoration: underline #28b16d55 2px;
     text-underline-offset: 5px;
-    background-color: rgba(68, 115, 146, 0.527);
+    background-color: #44927138;
     border-radius: 5px;
   }
 }
